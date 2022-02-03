@@ -10,7 +10,7 @@ Con las nuevas arquitecturas de múltiples núcleos, el objetivo para esta clase
 - [Primer corte](https://drive.google.com/drive/folders/1bSSGWXae9LOlL0mhnv9a1AVnyrN3fWAi?usp=sharing)
 
 ## Contenido del Repositorio
-En este repositorio se almacenan los ejercicios prácticos que se desarrollan a lo largo de la materia, cabe resaltar que son programas de con finalidades académicas.
+En este repositorio se almacenan los ejercicios prácticos que se desarrollan a lo largo de la materia. Cabe resaltar que son programas con finalidades académicas.
 
 #### Lenguajes de prgramación
 <div dir="auto">
