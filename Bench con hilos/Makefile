@@ -1,6 +1,6 @@
 GCC = gcc 
 FLAGS = -pedantic -Wall
-CFLAGS = -lm -pthreads
+CFLAGS = -lm -pthread
 
 PROGS: MM1c MM1f
 
