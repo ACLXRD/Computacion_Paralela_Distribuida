@@ -8,13 +8,16 @@ Con las nuevas arquitecturas de múltiples núcleos, el objetivo para esta clase
 
 #### Apuntes de Clase ✍🏻
 - [Primer corte](https://drive.google.com/drive/folders/1bSSGWXae9LOlL0mhnv9a1AVnyrN3fWAi?usp=sharing)
+- [Segundo corte](https://drive.google.com/drive/folders/1-NXk9jI6g5Dw2_uKaebkC9CeZUSvkHyW?usp=sharing)
 
 ## Contenido del Repositorio
 En este repositorio se almacenan los ejercicios prácticos que se desarrollan a lo largo de la materia. Cabe resaltar que son programas con finalidades académicas.
+- Nota: En el archivo de texto <code>commit_template.txt</code> se pueden ver la guia, nomenclatura y su significado de los identificadores en los commits.
 
 #### Lenguajes de prgramación
 <div dir="auto">
   <img align="center" alt="C++" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" style="max-width: 100%;">
+  <img align="center" alt="C" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" style="max-width: 100%;">
   <img align="center" alt="Python" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" style="max-width: 100%;">
 </div>
 
