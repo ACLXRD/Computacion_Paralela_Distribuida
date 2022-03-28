@@ -1,5 +1,4 @@
 # Benchmark utilizando multiplicación de matrices
-[TOCM]
 
 - Autor 👨🏻‍💻: Andrés C. López R.
 - Contacto 📧: andres.lopez01@correo.usa.edu.co
@@ -10,7 +9,7 @@ En este directorio se encunetran 3 interfaces (MM1c.c, MM1f.c  y MMPosix.c) y un
 La característica principal de MM1c.c es que para realizar la multiplicación este inicia la multiplicación tomando la columna en primer lugar, mientras que MM1f.c toma la matriz transpuesta para iniciar por las filas. Por otra parte, MMPosix.c utiliza reserva de memoria e hilos para aprovechar el principio de  concurrencia y así tener más multiplicaciones de filas y columnas en simultáneo.
 
 ## Compilación:
-> *las siguientes instrucciones se realizan por consola o línea comandos.*
+> *Las siguientes instrucciones se realizan por consola o línea comandos.*
 
 Para la compilación individual de cada módulo el proceso a seguir es el siguiente:
 
@@ -21,10 +20,10 @@ Para la compilación individual de cada módulo el proceso a seguir es el siguie
 Pero, para automatizar este proceso, se desarrolló un Makefile que realiza la compilación de las interfaces y los módulos de forma 	secuencial, agregando unas banderas que ayudan a la compilación correcta de cada programa. Para utilizar el Makefile se deben seguir los siguientes pasos:
 
 	make clean  
-	//Elimina los ejecutables y los archivos .o  que existan en el directorio.
+> Elimina los ejecutables y los archivos .o  que existan en el directorio.
 	
 	make MM1c  
-	//Dependiendo de la interfaz que se quiera compilar, indicar el nombre de la misma, estos pueden ser: MM1c, MM1f o MMPosix
+> Dependiendo de la interfaz que se quiera compilar, indicar el nombre de la misma, estos pueden ser: MM1c, MM1f o MMPosix
 
 ## Ejecución:
 > Las siguientes instrucciones se realizan por consola o línea comandos.
@@ -32,21 +31,19 @@ Pero, para automatizar este proceso, se desarrolló un Makefile que realiza la c
 Si se desea ejecutar uno de los programas previamente mencionados y compolados, se debe seguir los siguientes pasos:
 
 	./MM1c N  
-	//Después del operado "./" debe ir el nombre del programa previamente compilado, estos pueden ser ./MM1c o ./MM1f La letra "N" hace referencia a un número entero positivo que equivale al tamaño de las matrices. 
-	// Ej: ./MM1c 5
+> Después del operado "./" debe ir el nombre del programa previamente compilado, estos pueden ser ./MM1c o ./MM1f La letra "N" hace referencia a un número entero positivo que equivale al tamaño de las matrices. Ej: ./MM1c 5
 
 Si desea ver el tiempo de ejecución, del usuario, del sistema y el  total, escribir el siguiente comando:
 
 	time ./MM1c N 
-	//La letra "N" hace referencia a un número entero positivo que equivale al tamaño de las matrices. 
-	// Ej: time ./MM1c 5
+> La letra "N" hace referencia a un número entero positivo que equivale al tamaño de las matrices. Ej: time ./MM1c 5
 
 Para la ejecución de MMPosix se deben ingresar dos parametros:
 
 	./MMPosix N H 
-	//La letra "N" hace referencia a un número entero positivo que equivale al tamaño de las matrices. Ej: ./MMPosix 2000 2
-	//La letra "H" hace referencia al número de hilos que se desea utilizar, este número debe ser menor al número de núcleos de procesamiento que posee el ordenador y además debe ser divisor del tamaño de la matriz. 
-	// Ej ./MMPosix 4000 4
+> La letra "N" hace referencia a un número entero positivo que equivale al tamaño de las matrices. Ej: ./MMPosix 2000 2 
+
+> La letra "H" hace referencia al número de hilos que se desea utilizar, este número debe ser menor al número de núcleos de procesamiento que posee el ordenador y además debe ser divisor del tamaño de la matriz. Ej ./MMPosix 4000 4
 
 ## Output
 Después de la ejecución, el programa mostrará en consola el tiempo total que le tomo realizar únicamente la multiplicación. A continuación se muestra un ejemplo desde la compilación hasta el mensaje que se debe ver en consola.
