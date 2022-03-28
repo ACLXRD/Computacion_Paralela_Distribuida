@@ -32,9 +32,16 @@ void sampleStart(){
 void sampleEnd(){
 	clock_gettime(CLOCK_MONOTONIC, &fin);	
 	double totalTime;
-	totalTime = (fin.tv_sec - inicio.tv_sec)*1e9;
-	totalTime = (totalTime + (fin.tv_nsec - inicio.tv_nsec))*1e-9;
-	printf ("\nTotal time: %f seg \n", totalTime);
+	char *unidad = "seg";
+	totalTime 	= (fin.tv_sec - inicio.tv_sec)*1e9;
+	totalTime	= (totalTime + (fin.tv_nsec - inicio.tv_nsec))*1e-9;
+
+	if (totalTime >= 60){
+		totalTime /= 60;
+		unidad = "min"; 
+	}
+
+	printf ("\nTotal time: %f %s \n\n", totalTime, unidad);
 }
 /*	@brief: Function that generates a random number 
 	@return: Random number between 0.001 and 9.999 with double precision
@@ -61,12 +68,11 @@ void initMatrix(int SZ, double *Ma, double *Mb, double *Mr){
 	int i, j;
 	for(i=0; i<SZ; ++i){
 		for(j=0;j<SZ;++j){
-			Ma[j+i*SZ] = 3.0*(i-j);
-			Mb[j+i*SZ] = 2.8*(j+i);
+			Ma[j+i*SZ] = randNumber();
+			Mb[j+i*SZ] = randNumber();
 			Mr[j+i*SZ] = 0.0;
 		}
 	}
-		
 }
 
 /*	@brief: Print a matrix
@@ -164,13 +170,18 @@ void initMatrix_DoublePointers (double **MA, double **MB, double **MC, int size)
 	int i, j; /*Indices*/
 	for (i = 0; i < size; ++i)	{
 		for (j = 0; j < size; ++j)	{
-			MA[i][j] = 3.9*(i-j);
-            MB[i][j] = 2.0*(j+i);
+			MA[i][j] = randNumber();
+            MB[i][j] = randNumber();
             MC[i][j] = 0.0;
 		}
 	}
 }
 
+/*
+* @brief Fuction to print matrix of type double pointer
+* @param **M: matrix of type double pointer to print
+* @size: Matrizx size
+*/
 void printMatrix_DoublePointers (double **M, int size){
 	int i, j; /*Indices*/
 	for (i = 0; i < size; ++i)	{
@@ -181,4 +192,55 @@ void printMatrix_DoublePointers (double **M, int size){
 	}
 	printf("-----------------------------\n");
 
+}
+
+/*Struc to send multiple data to the threads
+    size: Matrix size
+    nTh: Number of threads
+    idTh: Thread ID
+    MA: Matrix A
+    MB: Matrix B
+    MC: Matrix C (result of multiplication)
+*/
+struct args {
+    int size, nTh;
+    int *idTh;
+    double **MA, **MB, **MC;
+};
+
+/**
+ * @brief Function that will be sent to each thread, that makes the matrix multiplication.
+ * The matrix A divides in slices, in function with the dimension and the number of threads that requires the 
+ * user.
+ * @param arg: Alocate the struct args sent at the interface.
+ * Note: 	The function will be void, and this returns a potential 
+ * 			warning. Thats why the we use return NULL.
+ */
+void *multMM(void *arg){
+	int N 		=  ((struct args*)arg)->size;
+	int Nthreads=  ((struct args*)arg)->nTh; 
+	double **Ma =  ((struct args*)arg)->MA;
+	double **Mb	=  ((struct args*)arg)->MB;
+	double **Mc	=  ((struct args*)arg)->MC;
+	int idTh	= *((struct args*)arg)->idTh; 	//Void pointer to integer 
+
+	int i, j, k;
+	int portionSize, initRow, endRow;
+	double sum;
+	
+	portionSize = N/Nthreads; 		// It is determined the portion of matrix A to send to each thread
+	initRow = idTh*portionSize; 	// It is passed the beggining of the row 
+	endRow = (idTh+1)*portionSize;	// It is passed the end of the row
+	
+	for (i = initRow; i < endRow; i++){
+		for (j = 0; j < N; ++j){
+			sum = 0;
+			for ( k = 0; k < N; k++){
+				sum += Ma[i][k]*Mb[k][j];
+			}
+			Mc[i][j] = sum;
+		}
+	}
+	
+	return NULL;
 }
