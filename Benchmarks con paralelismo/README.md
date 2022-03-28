@@ -6,10 +6,10 @@
 ## Descripción
 En este directorio se encunetran 3 interfaces (MM1c.c, MM1f.c  y MMPosix.c) y un modulo (modulo.c) con su respectivo archivo de cabecera (modulo.h). Cada interfaz realiza una multiplicación de matrices cuadradas usando el algoritmo clásico (fila x columna).
 
-La característica principal de MM1c.c es que para realizar la multiplicación este inicia la multiplicación tomando la columna en primer lugar, mientras que MM1f.c toma la matriz transpuesta para iniciar por las filas. Por otra parte, MMPosix.c utiliza reserva de memoria e hilos para aprovechar el principio de  concurrencia y así tener más multiplicaciones de filas y columnas en simultáneo.
+La característica principal de MM1c.c es que para realizar la multiplicación este la inicia tomando las filas de la matriz A para multiplicarlo con las columnas de la matriz B, mientras que MM1f.c toma la matriz B transpuesta para realizar una multiplicación de filas por filas, pero al ser transpuesta en realidad se mantiene el algoritmo clásico filas por columnas. Por otra parte, MMPosix.c utiliza reserva de memoria e hilos para aprovechar el principio de concurrencia y así tener más multiplicaciones de filas y columnas en simultáneo.
 
 ## Compilación:
-> *Las siguientes instrucciones se realizan por consola o línea comandos.*
+> *Las siguientes instrucciones se realizan por consola o línea comandos.* 
 
 Para la compilación individual de cada módulo el proceso a seguir es el siguiente:
 
