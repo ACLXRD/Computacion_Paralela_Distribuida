@@ -10,6 +10,22 @@
 #ifndef MODULO_C_H_INCLUDE
 #define MODULO_C_H_INCLUDE
 
+/**
+ * Struc to send multiple data to the threads
+ * size: Matrix size
+ * nTh: Number of threads
+ * idTh: Thread ID
+ * MA: Matrix A
+ * MB: Matrix B
+ * MC: Matrix C (result of multiplication)
+*/
+struct args {
+    int size, nTh;
+    int *idTh;
+    double **MA, **MB, **MC;
+};
+
+
 void sampleStart();
 void sampleEnd();
 double randNumber();

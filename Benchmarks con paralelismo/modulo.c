@@ -231,11 +231,6 @@ void printMatrix_DoublePointers (double **M, int size){
  * MB: Matrix B
  * MC: Matrix C (result of multiplication)
 */
-struct args {
-    int size, nTh;
-    int *idTh;
-    double **MA, **MB, **MC;
-};
 
 /**
  * @brief Function that will be sent to each thread, that makes the matrix multiplication.
