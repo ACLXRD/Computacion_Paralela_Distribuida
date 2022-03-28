@@ -49,6 +49,12 @@ Ejecución:
 				entero positivo que equivale al tamaño de
 				las matrices. Ej: ./MM1c 5
 
+	Si desea ver el tiempo de ejecución, del usuario, del sistema y el 
+	total, escribir el siguiente comando:
+		time ./MM1c N ->La letra "N" hace referencia a un número
+				entero positivo que equivale al tamaño de
+				las matrices. Ej: time ./MM1c 5
+
 	Para la ejecución de MMPosix se deben ingresar dos parametros:
 		./MMPosix N H ->La letra "N" hace referencia a un número
 				entero positivo que equivale al tamaño de
@@ -59,10 +65,3 @@ Ejecución:
 				procesamiento que posee el ordenador y
 				además debe ser divisor del tamaño de la
 				matriz. Ej ./MMPosix 4000 4
-				
-
-	Si desea ver el tiempo de ejecución, del usuario, del sistema y el 
-	total, escribir el siguiente comando:
-		time ./MM1c N ->La letra "N" hace referencia a un número
-				entero positivo que equivale al tamaño de
-				las matrices. Ej: time ./MM1c 5
