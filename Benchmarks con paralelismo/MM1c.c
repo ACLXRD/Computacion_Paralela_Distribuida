@@ -30,6 +30,9 @@ struct timespec inicio, fin;
 /*Memory space acordin reserve memory value*/
 static double MEM_CHUNK[DATA_SZ];
 
+/** 
+* @brief main(): Main function
+*/
 int main(int argc, char *argv[]) {
 	
 	/*Matrix size*/

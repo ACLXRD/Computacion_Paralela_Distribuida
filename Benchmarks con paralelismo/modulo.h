@@ -1,4 +1,4 @@
-/*Fecha: 08/02/2022
+/**Fecha: 08/02/2022
 * Autor: Andres C. Lopez R.
 * Subject: Parallel and Distributed Computing.
 * Topic: Construction of the first Benchmark
@@ -15,6 +15,7 @@ void sampleEnd();
 double randNumber();
 void initMatrix(int SZ, double *Ma, double *Mb, double *Mr);
 void printMatrix(int SZ, double *M);
+void printMatrixTransposed(int SZ, double *M);
 void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr);
 void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr);
 double ** memReserve (int size);

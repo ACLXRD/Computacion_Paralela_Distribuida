@@ -25,13 +25,14 @@
 #include <pthread.h>
 #include <sys/time.h>
 
-/*Struc to send multiple data to the threads
-    size: Matrix size
-    nTh: Number of threads
-    idTh: Thread ID
-    MA: Matrix A
-    MB: Matrix B
-    MC: Matrix C (result of multiplication)
+/**
+ * Struc to send multiple data to the threads
+ * size: Matrix size
+ * nTh: Number of threads
+ * idTh: Thread ID
+ * MA: Matrix A
+ * MB: Matrix B
+ * MC: Matrix C (result of multiplication)
 */
 struct args {
     int size, nTh;
@@ -39,7 +40,7 @@ struct args {
     double **MA, **MB, **MC;
 };
 
-/* 
+/** 
 * @brief main(): Main function
 */
 int main(int argc, char* argv[]){
@@ -48,7 +49,7 @@ int main(int argc, char* argv[]){
         return -1;
     }
 
-        /*Init of varaibles for the struct*/
+    /*Init of varaibles for the struct*/
     int N          		= atof(argv[1]);    /* Matrix's size.*/
     int Nthreads   		= atof(argv[2]);    /* Number of threads.*/
     pthread_t *threads 	= (pthread_t*)malloc(N*sizeof(pthread_t)); /*Thread reservation*/
