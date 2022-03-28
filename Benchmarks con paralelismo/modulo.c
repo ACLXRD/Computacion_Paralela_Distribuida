@@ -103,7 +103,7 @@ void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr){
 		double sumaAuxiliar = 0.0;
 		pA = Ma + (i*size);
 		pB = Mb + j;
-			for(int k = 0; k < size; ++k, pA ++, pB+=size){
+			for(int k = 0; k < size; ++k, pA++, pB += size){
 				sumaAuxiliar += (*pA * *pB);
 			}
 			Mr[i*size+j] = sumaAuxiliar;
