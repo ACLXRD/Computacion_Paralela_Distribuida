@@ -49,6 +49,8 @@ Para la ejecución de MMPosix se deben ingresar dos parametros:
 Después de la ejecución, el programa mostrará en consola el tiempo total que le tomo realizar únicamente la multiplicación. A continuación se muestra un ejemplo desde la compilación hasta el mensaje que se debe ver en consola.
 
 	@user $: make clean
+	rm -f  *.o
+	rm -f MM1c MM1f MMPosix
 	@user $: make MMPosix
 	gcc  -pedantic -Wall modulo.c -c -lm -lpthread
 	gcc  -pedantic -Wall MMPosix.c -c -lm -lpthread
