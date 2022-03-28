@@ -23,12 +23,16 @@
 struct timespec inicio, fin;
 
 /* -------------------------------------Funciones ------------------------------------*/
-/*	@brief: Get the init time*/
+/**
+ * @brief: Get the init time
+*/
 void sampleStart(){
 	clock_gettime(CLOCK_MONOTONIC, &inicio);	
 }
 
-/*	@brief: Get the end time */
+/**
+ * 	@brief: Get the end time 
+ */
 void sampleEnd(){
 	clock_gettime(CLOCK_MONOTONIC, &fin);	
 	double totalTime;
@@ -43,8 +47,9 @@ void sampleEnd(){
 
 	printf ("\nTotal time: %f %s \n\n", totalTime, unidad);
 }
-/*	@brief: Function that generates a random number 
-	@return: Random number between 0.001 and 9.999 with double precision
+/**
+ * @brief: Function that generates a random number 
+ * @return: Random number between 0.001 and 9.999 with double precision
     ---
     getpid(): Gets an ID of a rand porcess of the system
 */
@@ -60,9 +65,9 @@ double randNumber(){
     return min + (float)rand()/((float)RAND_MAX/(max-min));
 }
 
-/*	@brief: Gives values for each space of a matrix
-	@param SZ: Size of the matrix
-
+/**
+ * @brief: Gives values for each space of a matrix
+ * @param SZ: Size of the matrix
 */
 void initMatrix(int SZ, double *Ma, double *Mb, double *Mr){
 	int i, j;
@@ -75,9 +80,9 @@ void initMatrix(int SZ, double *Ma, double *Mb, double *Mr){
 	}
 }
 
-/*	@brief: Print a matrix
-	@param SZ: Size of the matrix
-	@return *M: Matrix to print	
+/**
+ * @brief: Print a matrix
+ * @param SZ: Size of the matrix
 */
 void printMatrix(int SZ, double *M){
 	int i,j;
@@ -88,16 +93,31 @@ void printMatrix(int SZ, double *M){
 		printf("\n");
 	}
 		printf("----------------------------");
-		printf("\n");
-		
-		
+		printf("\n");	
 }
 
-/*	@brief: Multiply matrices
-	@param size: Size of matrix
-	@param a: Matriz A to multiply
-	@param b: Matriz B to multiply
-	@param c: Total matrix of multiplication
+/**
+ * @brief: Print a matrix transposed
+ * @param SZ: Size of the matrix
+*/
+void printMatrixTransposed(int SZ, double *M){
+	int i,j;
+	for (i=0;i<SZ; ++i){
+		for (j=0;j<SZ; ++j){
+			printf("  %f  ", M[j*SZ+i]);
+		}
+		printf("\n");
+	}
+		printf("----------------------------");
+		printf("\n");	
+}
+
+/**
+ * @brief: Multiply matrices using row*columns
+ * @param size: Size of matrix
+ * @param a: Matriz A to multiply
+ * @param b: Matriz B to multiply
+ * @param c: Total matrix of multiplication
     ---
 */
 void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr){
@@ -117,8 +137,16 @@ void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr){
 	}
 }
 
+/**
+ * @brief: Multiply matrices using transposed matrix the way to multiply row*row
+ * @param size: Size of matrix
+ * @param Ma: Matriz A to multiply
+ * @param Mb: Matriz B to multiply
+ * @param Mr: Total matrix of multiplication
+    ---
+*/
 void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr){
-  int i, j;
+  int i, j, k;
 	for(i=0; i<size; ++i){
 		for(j=0; j<size; ++j){
 		/*Necesita puteros auxiliares*/
@@ -126,7 +154,7 @@ void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr){
 		double sumaAuxiliar = 0.0;
 		pA = Ma + (i*size);
 		pB = Mb + (j*size);
-			for(int k = 0; k < size; ++k, pA++, pB++){
+			for(k = 0; k < size; ++k, pA++, pB++){
 				sumaAuxiliar += (*pA * *pB);
 			}
 			Mr[i*size+j] = sumaAuxiliar;
@@ -139,13 +167,12 @@ void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr){
 	de igual diemnsion
 */
 
-
 /****************** Functions for posix (program using threads)**************************/
 
-/*
-	@breif: Memory reserve for double pointer matrices
-	@param size: Matrix size
-	@return ptr: Doble pointer Vector with portions of the matrix allocated in threads
+/**
+ * @breif: Memory reserve for double pointer matrices
+ * @param size: Matrix size
+ * @return ptr: Doble pointer Vector with portions of the matrix allocated in threads
 */
 double ** memReserve (int size){
 	/* Memory reserve of dimenion NxN double*/
@@ -160,11 +187,12 @@ double ** memReserve (int size){
 	return ptr;
 }
 
-/*	@brief: Gives values for each space of a matrix
-	@param **Ma: Matrix A
-	@param **Mb: Matrix B
-	@param **Mc: Matrix C
-	@param size: Size of the matrix
+/**
+ * @brief: Gives values for each space of a matrix
+ * @param MA: Matrix A
+ * @param MB: Matrix B
+ * @param MC: Matrix C
+ * @param size: Size of the matrix
 */
 void initMatrix_DoublePointers (double **MA, double **MB, double **MC, int size){
 	int i, j; /*Indices*/
@@ -177,10 +205,10 @@ void initMatrix_DoublePointers (double **MA, double **MB, double **MC, int size)
 	}
 }
 
-/*
+/**
 * @brief Fuction to print matrix of type double pointer
-* @param **M: matrix of type double pointer to print
-* @size: Matrizx size
+* @param M: matrix of type double pointer to print
+* @param size: Matrizx size
 */
 void printMatrix_DoublePointers (double **M, int size){
 	int i, j; /*Indices*/
@@ -194,13 +222,14 @@ void printMatrix_DoublePointers (double **M, int size){
 
 }
 
-/*Struc to send multiple data to the threads
-    size: Matrix size
-    nTh: Number of threads
-    idTh: Thread ID
-    MA: Matrix A
-    MB: Matrix B
-    MC: Matrix C (result of multiplication)
+/**
+ * Struc to send multiple data to the threads
+ * size: Matrix size
+ * nTh: Number of threads
+ * idTh: Thread ID
+ * MA: Matrix A
+ * MB: Matrix B
+ * MC: Matrix C (result of multiplication)
 */
 struct args {
     int size, nTh;
