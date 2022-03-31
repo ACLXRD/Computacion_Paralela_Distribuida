@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <errno.h>
+#include <omp.h>
 
 
 /*CONSTANTS*/
@@ -36,16 +37,17 @@ void sampleStart(){
 void sampleEnd(){
 	clock_gettime(CLOCK_MONOTONIC, &fin);	
 	double totalTime;
-	char *unidad = "seg";
+	// char *unidad = "seg";
 	totalTime 	= (fin.tv_sec - inicio.tv_sec)*1e9;
 	totalTime	= (totalTime + (fin.tv_nsec - inicio.tv_nsec))*1e-9;
 
-	if (totalTime >= 60){
-		totalTime /= 60;
-		unidad = "min"; 
-	}
-
-	printf ("\nTotal time: %f %s \n\n", totalTime, unidad);
+	// if (totalTime >= 60){
+	// 	totalTime /= 60;
+	// 	unidad = "min"; 
+	// }
+	// printf ("\nTotal time: %f %s \n\n", totalTime, unidad);
+	
+	printf ("\n%f\n\n", totalTime);
 }
 /**
  * @brief: Function that generates a random number 
@@ -73,8 +75,8 @@ void initMatrix(int SZ, double *Ma, double *Mb, double *Mr){
 	int i, j;
 	for(i=0; i<SZ; ++i){
 		for(j=0;j<SZ;++j){
-			Ma[j+i*SZ] = randNumber();
-			Mb[j+i*SZ] = randNumber();
+			Ma[j+i*SZ] = 3.2*(i+j);
+			Mb[j+i*SZ] = 2.4*(j-i);
 			Mr[j+i*SZ] = 0.0;
 		}
 	}
@@ -86,14 +88,17 @@ void initMatrix(int SZ, double *Ma, double *Mb, double *Mr){
 */
 void printMatrix(int SZ, double *M){
 	int i,j;
-	for (i=0;i<SZ; ++i){
-		for (j=0;j<SZ; ++j){
-			printf("  %f  ",M[j+i*SZ]);
+	if (SZ < 5){
+		for (i=0;i<SZ; ++i){
+			for (j=0;j<SZ; ++j){
+				printf("  %f  ",M[j+i*SZ]);
+			}
+			printf("\n");
 		}
-		printf("\n");
+			printf("----------------------------");
+			printf("\n");	
 	}
-		printf("----------------------------");
-		printf("\n");	
+	
 }
 
 /**
@@ -102,14 +107,17 @@ void printMatrix(int SZ, double *M){
 */
 void printMatrixTransposed(int SZ, double *M){
 	int i,j;
-	for (i=0;i<SZ; ++i){
-		for (j=0;j<SZ; ++j){
-			printf("  %f  ", M[j*SZ+i]);
+
+	if(SZ < 5){
+		for (i=0;i<SZ; ++i){
+			for (j=0;j<SZ; ++j){
+				printf("  %f  ", M[j*SZ+i]);
+			}
+			printf("\n");
 		}
-		printf("\n");
+			printf("----------------------------");
+			printf("\n");	
 	}
-		printf("----------------------------");
-		printf("\n");	
 }
 
 /**
@@ -120,7 +128,7 @@ void printMatrixTransposed(int SZ, double *M){
  * @param c: Total matrix of multiplication
     ---
 */
-void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr){
+void MM1c(int size, double *Ma, double *Mb, double *Mr){
 	int i, j;
 	for(i=0; i<size; ++i){
 		for(j=0; j<size; ++j){
@@ -145,7 +153,7 @@ void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr){
  * @param Mr: Total matrix of multiplication
     ---
 */
-void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr){
+void MM1f(int size, double *Ma, double *Mb, double *Mr){
   int i, j, k;
 	for(i=0; i<size; ++i){
 		for(j=0; j<size; ++j){
@@ -198,8 +206,8 @@ void initMatrix_DoublePointers (double **MA, double **MB, double **MC, int size)
 	int i, j; /*Indices*/
 	for (i = 0; i < size; ++i)	{
 		for (j = 0; j < size; ++j)	{
-			MA[i][j] = randNumber();
-            MB[i][j] = randNumber();
+			MA[i][j] = 3.2*(i+j);
+            MB[i][j] = 2.4*(i-j);
             MC[i][j] = 0.0;
 		}
 	}
@@ -265,6 +273,6 @@ void *multMM(void *arg){
 			Mc[i][j] = sum;
 		}
 	}
-	
+	//pthread_exit(NULL);
 	return NULL;
 }

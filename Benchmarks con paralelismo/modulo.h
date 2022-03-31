@@ -4,7 +4,7 @@
 * Topic: Construction of the first Benchmark
 * Description: Application that allows evaluating the performance
   of a specific aspect of the computer using matrix multiplication
-  with the calssical algorithm (rows x columns)
+  with the calssical algorithm(rows x columns)
 */
 
 #ifndef MODULO_C_H_INCLUDE
@@ -17,7 +17,7 @@
  * idTh: Thread ID
  * MA: Matrix A
  * MB: Matrix B
- * MC: Matrix C (result of multiplication)
+ * MC: Matrix C(result of multiplication)
 */
 struct args {
     int size, nTh;
@@ -32,11 +32,11 @@ double randNumber();
 void initMatrix(int SZ, double *Ma, double *Mb, double *Mr);
 void printMatrix(int SZ, double *M);
 void printMatrixTransposed(int SZ, double *M);
-void matrixMultiplyMM1c(int size, double *Ma, double *Mb, double *Mr);
-void matrixMultiplyMM1f(int size, double *Ma, double *Mb, double *Mr);
-double ** memReserve (int size);
-void initMatrix_DoublePointers (double **MA, double **MB, double **MC, int size);
-void printMatrix_DoublePointers (double **M, int size);
+void MM1c(int size, double *Ma, double *Mb, double *Mr);
+void MM1f(int size, double *Ma, double *Mb, double *Mr);
+double ** memReserve(int size);
+void initMatrix_DoublePointers(double **MA, double **MB, double **MC, int size);
+void printMatrix_DoublePointers(double **M, int size);
 void *multMM(void *arg);
 
 #endif

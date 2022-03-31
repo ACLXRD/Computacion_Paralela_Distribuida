@@ -45,17 +45,14 @@ int main(int argc, char *argv[]) {
 	Mr = Mb + N*N;
 	
 	initMatrix(N, Ma, Mb, Mr);
+	printMatrix(N, Ma);
+	printMatrix(N, Mb);
+
 	sampleStart();
-	matrixMultiplyMM1f(N, Ma, Mb, Mr);
-    
-    	printf("Ma\n");
-    	printMatrix(N, Ma);
-    	printf("Mb\n");
-    	printMatrixTransposed(N, Mb);
-    	printf("Mr\n");
-    	printMatrix(N, Mr);
-		
+	MM1f(N, Ma, Mb, Mr);
 	sampleEnd();
+		
+   	printMatrix(N, Mr);
 	return 0;
 }
 /*

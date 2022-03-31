@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <sys/time.h>
+#include <omp.h>
 
 /** 
 * @brief main(): Main function
@@ -39,20 +40,27 @@ int main(int argc, char* argv[]){
     int Nthreads   		= atof(argv[2]);    /* Number of threads.*/
     pthread_t *threads 	= (pthread_t*)malloc(N*sizeof(pthread_t)); /*Thread reservation*/
     
+     /*Validation f number of cores on PC against the number ent throw parameters*/
+    if (Nthreads > omp_get_max_threads( )){
+        printf("\nEl numero de hilos debe ser <= que %d\n\n", omp_get_max_threads( ));
+        return -1;
+    }
+
+
 	/*Memory creation and reserce for each matrix*/
     double **Ma = memReserve(N); 
     double **Mb = memReserve(N);
     double **Mc = memReserve(N);
-    initMatrix_DoublePointers (Ma, Mb, Mc, N);
+    initMatrix_DoublePointers(Ma, Mb, Mc, N);
     
     /*Init of pointer type struct to send multiple data to the thread*/
     struct args *paramsThread = (struct args *)malloc(sizeof(struct args));
     
     if (N<4){
         printf("Matriz A\n");
-        printMatrix_DoublePointers (Ma, N);
+        printMatrix_DoublePointers(Ma, N);
         printf("Matriz B\n");
-        printMatrix_DoublePointers (Mb, N);
+        printMatrix_DoublePointers(Mb, N);
     }
     
 	sampleStart();
