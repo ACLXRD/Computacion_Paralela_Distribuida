@@ -45,14 +45,14 @@ int main(int argc, char *argv[]) {
 	Mr = Mb + N*N;
 	
 	initMatrix(N, Ma, Mb, Mr);
-	printMatrix(N, Ma);
-	printMatrix(N, Mb);
+	printMatrix(N, Ma, "Ma");
+	printMatrix(N, Mb, "Mb");
 
 	sampleStart();
 	MM1c(N, Ma, Mb, Mr);
 	sampleEnd();
 		
-   	printMatrix(N, Mr);
+   	printMatrix(N, Mr, "Mr");
 		
 	return 0;
 }

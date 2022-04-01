@@ -86,37 +86,35 @@ void initMatrix(int SZ, double *Ma, double *Mb, double *Mr){
  * @brief: Print a matrix
  * @param SZ: Size of the matrix
 */
-void printMatrix(int SZ, double *M){
+void printMatrix(int SZ, double *M, char *name){
 	int i,j;
 	if (SZ < 5){
+		printf("%s", name);
 		for (i=0;i<SZ; ++i){
 			for (j=0;j<SZ; ++j){
-				printf("  %f  ",M[j+i*SZ]);
+				printf("	%.2f",M[j+i*SZ]);
 			}
 			printf("\n");
 		}
-			printf("----------------------------");
-			printf("\n");	
+		printf("---------------------------------------------------------\n");
 	}
-	
 }
 
 /**
  * @brief: Print a matrix transposed
  * @param SZ: Size of the matrix
 */
-void printMatrixTransposed(int SZ, double *M){
+void printMatrixTransposed(int SZ, double *M, char *name){
 	int i,j;
-
 	if(SZ < 5){
+		printf("%s", name);
 		for (i=0;i<SZ; ++i){
 			for (j=0;j<SZ; ++j){
-				printf("  %f  ", M[j*SZ+i]);
+				printf("	%.2f", M[j*SZ+i]);
 			}
 			printf("\n");
 		}
-			printf("----------------------------");
-			printf("\n");	
+		printf("---------------------------------------------------------\n");
 	}
 }
 
@@ -218,16 +216,18 @@ void initMatrix_DoublePointers (double **MA, double **MB, double **MC, int size)
 * @param M: matrix of type double pointer to print
 * @param size: Matrizx size
 */
-void printMatrix_DoublePointers (double **M, int size){
+void printMatrix_DoublePointers (double **M, int size, char *name){
 	int i, j; /*Indices*/
-	for (i = 0; i < size; ++i)	{
-		for (j = 0; j < size; ++j)	{
-			printf("	%lf", M[i][j]);
+	if(size < 5){
+		printf("%s", name);
+		for (i = 0; i < size; ++i)	{
+			for (j = 0; j < size; ++j)	{
+				printf("	%.2f", M[i][j]);
+			}
+			printf("\n");
 		}
-		printf("\n");
+		printf("----------------------------------------------------------\n");
 	}
-	printf("-----------------------------\n");
-
 }
 
 /**
@@ -273,6 +273,6 @@ void *multMM(void *arg){
 			Mc[i][j] = sum;
 		}
 	}
-	//pthread_exit(NULL);
+	// pthread_exit(NULL);
 	return NULL;
 }

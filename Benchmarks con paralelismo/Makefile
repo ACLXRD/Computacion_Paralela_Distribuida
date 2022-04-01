@@ -1,8 +1,7 @@
 GCC = gcc
 FLAGS = -pedantic -Wall -fopenmp
 CFLAGS = -lm -lpthread
-
-PROGS: MM1c MM1f MMPosix
+PROGS = MM1c MM1f MMPosix
 
 MM1c:
 	$(GCC) $(FLAGS) modulo.c -c
@@ -21,4 +20,3 @@ MMPosix:
 
 clean:
 	$(RM) $(PROGS) *.o
-	$(RM) MM1c MM1f MMPosix

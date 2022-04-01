@@ -56,26 +56,24 @@ int main(int argc, char* argv[]){
     /*Init of pointer type struct to send multiple data to the thread*/
     struct args *paramsThread = (struct args *)malloc(sizeof(struct args));
     
-    if (N<4){
-        printf("Matriz A\n");
-        printMatrix_DoublePointers(Ma, N);
-        printf("Matriz B\n");
-        printMatrix_DoublePointers(Mb, N);
-    }
+    printMatrix_DoublePointers(Ma, N, "Ma");
+    printMatrix_DoublePointers(Mb, N, "Mb");
+    
+    /**
+     * Struc to send multiple data to the threads
+     * Variable assignment for struct
+    **/
+    paramsThread->size = N;
+    paramsThread->nTh  = Nthreads;
+    paramsThread->MA   = Ma;
+    paramsThread->MB   = Mb;
+    paramsThread->MC   = Mc;
     
 	sampleStart();
-    
+
     for (int i = 0; i < Nthreads; ++i){
         int *idThread = (int *)malloc(sizeof(int));
         *idThread = i;
-
-        /* Struc to send multiple data to the threads*/
-        /* Variable assignment for struct*/
-        paramsThread->size = N;
-        paramsThread->nTh  = Nthreads;
-        paramsThread->MA   = Ma;
-        paramsThread->MB   = Mb;
-        paramsThread->MC   = Mc;
         paramsThread->idTh = idThread;
 
         pthread_create(&threads[i], NULL, multMM, (void *)paramsThread);
@@ -87,11 +85,9 @@ int main(int argc, char* argv[]){
     
     sampleEnd();
     free(threads);
-    
-    if (N<4){
-        printf("Matriz C\n");
-        printMatrix_DoublePointers (Mc, N);
-    }
 
-    return 0;
+    printMatrix_DoublePointers (Mc, N, "Mr");
+    
+
+	return EXIT_SUCCESS;
 }
