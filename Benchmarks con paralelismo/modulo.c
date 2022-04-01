@@ -260,15 +260,15 @@ void *multMM(void *arg){
 	int portionSize, initRow, endRow;
 	double sum;
 	
-	portionSize = N/Nthreads; 		// It is determined the portion of matrix A to send to each thread
-	initRow = idTh*portionSize; 	// It is passed the beggining of the row 
-	endRow = (idTh+1)*portionSize;	// It is passed the end of the row
+	portionSize = N/Nthreads; 			// It is determined the portion of matrix A to send to each thread
+	initRow 	= idTh*portionSize; 	// It is passed the beggining of the row 
+	endRow 		= (idTh+1)*portionSize;	// It is passed the end of the row
 	
 	for (i = initRow; i < endRow; i++){
 		for (j = 0; j < N; ++j){
 			sum = 0;
 			for ( k = 0; k < N; k++){
-				sum += Ma[i][k]*Mb[k][j];
+				sum += Ma[i][k] * Mb[k][j];
 			}
 			Mc[i][j] = sum;
 		}
