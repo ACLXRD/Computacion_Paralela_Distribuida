@@ -18,7 +18,6 @@
 #include <sys/time.h>
 #include <errno.h>
 
-
 /*CONSTANTS*/
 struct timespec inicio, fin;
 
@@ -46,7 +45,7 @@ int main(int argc, char *argv[]) {
 	
 	initMatrix(N, Ma, Mb, Mr);
 	printMatrix(N, Ma, "Ma");
-	printMatrix(N, Mb, "Mb");
+	printMatrixTransposed(N, Mb, "Mb");
 
 	sampleStart();
 	MM1f(N, Ma, Mb, Mr);

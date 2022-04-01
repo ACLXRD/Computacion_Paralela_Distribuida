@@ -46,7 +46,6 @@ int main(int argc, char* argv[]){
         return -1;
     }
 
-
 	/*Memory creation and reserce for each matrix*/
     double **Ma = memReserve(N); 
     double **Mb = memReserve(N);
@@ -88,6 +87,5 @@ int main(int argc, char* argv[]){
 
     printMatrix_DoublePointers (Mc, N, "Mr");
     
-
 	return EXIT_SUCCESS;
 }

@@ -18,7 +18,6 @@
 #include <sys/time.h>
 #include <errno.h>
 
-
 /*CONSTANTS*/
 struct timespec inicio, fin;
 
