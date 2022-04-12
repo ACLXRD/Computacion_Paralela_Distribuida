@@ -35,7 +35,6 @@ Author: Andrés C. López
 #    - cambios de funcionalidad
 #    - etc...
 # ----------------------------------------------------------
-# ----------------------------------------------------------
 # Recursos relacionados - Donde ver información extra (opc)
 # ----------------------------------------------------------
 #    Por ejemplo, urls a documentos internos/externos
