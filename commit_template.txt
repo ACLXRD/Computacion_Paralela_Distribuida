@@ -43,4 +43,3 @@ Author: Andrés C. López
 # Comando para usar esta plantilla:
 #	 git config commit.template ~<direccion hasta la carpeta del repo>/Computacion_Paralela_Distribuida/commit_template.txt
 #    
-# ----------------------------------------------------------
