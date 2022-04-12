@@ -40,6 +40,6 @@ Author: Andrés C. López
 #    Por ejemplo, urls a documentos internos/externos
 #    sobre técnicas utilizadas, funcionalidad,
 #    casos de uso, docs técnicos, etc..
-# Ruta de esta plantilla: 
-#    D:\Archivos de Progrma\Git Utilities\commit_template.txt
-# ----------------------------------------------------------
+# Comando para usar esta plantilla:
+#	 git config commit.template ~<direccion hasta la carpeta del repo>/Computacion_Paralela_Distribuida/commit_template.txt
+#    
