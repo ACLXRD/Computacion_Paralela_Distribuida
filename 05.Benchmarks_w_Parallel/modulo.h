@@ -29,14 +29,16 @@ struct args {
 void sampleStart();
 void sampleEnd();
 double randNumber();
+double ** memReserve(int size);
 void initMatrix(int SZ, double *Ma, double *Mb, double *Mr);
 void printMatrix(int SZ, double *M, char *name);
 void printMatrixTransposed(int SZ, double *M, char *name);
-void MM1c(int size, double *Ma, double *Mb, double *Mr);
-void MM1f(int size, double *Ma, double *Mb, double *Mr);
-double ** memReserve(int size);
 void initMatrix_DoublePointers(double **MA, double **MB, double **MC, int size);
 void printMatrix_DoublePointers(double **M, int size, char *name);
+void MM1c(int size, double *Ma, double *Mb, double *Mr);
+void MM1f(int size, double *Ma, double *Mb, double *Mr);
 void *multMM(void *arg);
+void MM1c_OMP(int threads, int size, double *Ma, double *Mb, double *Mr);
+void MM1f_OMP(int threads, int size, double *Ma, double *Mb, double *Mr);
 
 #endif
