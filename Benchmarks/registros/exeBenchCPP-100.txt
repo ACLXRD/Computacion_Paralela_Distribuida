@@ -1,3 +1,0 @@
-
-Total time: 0.0158018 seg
-Total time: 0.0169949 seg
