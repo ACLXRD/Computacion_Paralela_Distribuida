@@ -1,0 +1,12 @@
+Build:
+sudo add-apt-repository universe
+sudo add-apt-repository multiverse
+sudo apt-get install build-essential
+sudo apt update
+sudo apt install gcc
+sudo apt install python3-pip
+pip3 install cython
+
+Execution:
+python3 setup.py build_ext --inplace
+python3 testing.py

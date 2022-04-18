@@ -1,0 +1,12 @@
+echo 'Runing instalations'
+sudo add-apt-repository universe
+sudo add-apt-repository multiverse
+sudo apt-get install build-essential
+sudo apt update
+sudo apt install gcc
+sudo apt install python3-pip
+pip3 install cython
+echo 'Cython ready to use. Remember to use'
+echo 'python3 setup.py build_ext --inplace'
+echo 'python3 test.py'
+# chmod +x cythonSetup
